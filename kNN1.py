@@ -1,5 +1,8 @@
 import numpy as np
 import random
+import scipy.stats as ss
+from sklearn import datasets
+iris = datasets.load_iris()
 
 def distance(p1, p2):
     """Find the distance between points p1 and p2."""
@@ -26,7 +29,13 @@ def majority_vote(votes):
 
     return random.choice(winners) #choose at random if tied
 
+def majority_vote_short(votes):
+    """Return the most commmon element in votes."""
+    mode, count = ss.mstats.mode(votes)
+    return mode
+
 votes= [1,2,3,1,2,3,1,2,3,3,3,3]
 winner = majority_vote(votes)
 print(winner)
+print(majority_vote_short(votes))
 
